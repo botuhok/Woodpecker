@@ -1,4 +1,5 @@
-# drumMachine
+# Woodpecker
+ESP32-C3 drum machine
 
 <img src="scheme.png">
 Things that you need for this:
@@ -37,7 +38,7 @@ You can switch between these patterns by simply moving the cursor or from the me
 dfplayer can't play two files at the same time!
 So all the drums sound plays one after the other, but it still sounds very good and helps in musical rehearsals.
 
-You can compile all this stuff in vscode using PlatformIO.
+You can compile all this stuff in vscode using PlatformIO and ESP-IDF library.
 For simple and effective OLED library thanks https://github.com/quackonauty/ESP-IDF-ESP_SSD1306
 
 <h2><b>TODO</b></h2>
