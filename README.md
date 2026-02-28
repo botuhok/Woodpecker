@@ -36,11 +36,14 @@ Eight tracks of different drum samples are arranged vertically.
 There are also four patterns that automatically follow each other during playback. 
 You can switch between these patterns by simply moving the cursor or from the menu.
 
-dfplayer can't play two files at the same time!
+<p><b>dfplayer can't play two files at the same time!</b></p>
 So all the drums sound plays one after the other, but it still sounds very good and helps in musical rehearsals.
+<p>For simple and effective OLED library thanks https://github.com/quackonauty/ESP-IDF-ESP_SSD1306</p>
+<h2><b>Installation:</b></h2>
+<p><b>You can compile all this stuff in vscode using PlatformIO and ESP-IDF framework.</b></p>
 
-You can compile all this stuff in vscode using PlatformIO and ESP-IDF library.
-For simple and effective OLED library thanks https://github.com/quackonauty/ESP-IDF-ESP_SSD1306
+
+
 
 <h2><b>TODO</b></h2>
 <ul>
