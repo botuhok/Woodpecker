@@ -21,22 +21,22 @@ TODO:
 #include "esp_sleep.h"
 #define TAG "WOODPECKER"
 
-static const uint8_t logo[4][32] = {
-    {0x00, 0x00, 0x00, 0xC0, 0x60, 0x18, 0x00, 0x00, 0x70, 0x78, 0x78, 0x78, 0xF8, 0xF8, 0xF0, 0xF0,
-     0xF2, 0xE6, 0xE6, 0xCE, 0x9E, 0x9C, 0x3C, 0x78, 0xF8, 0xF0, 0xE0, 0xC0, 0x80, 0x00, 0x00, 0x00},
-    {0x00, 0xFC, 0x07, 0x60, 0xF8, 0xFC, 0xFE, 0xFE, 0x9E, 0x9E, 0x9E, 0x3E, 0x3E, 0x7C, 0x7C, 0xF9,
-     0xF9, 0xF3, 0xE7, 0xCF, 0x9F, 0x3F, 0x7F, 0xFE, 0xFC, 0xF1, 0xE3, 0x8F, 0x1F, 0xFE, 0xF8, 0x00},
-    {0x00, 0x07, 0x3C, 0xE0, 0x81, 0x03, 0x07, 0xC7, 0xE7, 0xC7, 0xCF, 0x1F, 0x7F, 0xFE, 0xFC, 0xF8,
-     0xE1, 0x07, 0x3F, 0xFF, 0xFF, 0xFE, 0xF0, 0x01, 0x0F, 0xFF, 0xFF, 0xFF, 0x3C, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x06, 0x0D, 0x19, 0x11, 0x30, 0x20, 0x24, 0x4F, 0x4F, 0x4F,
-     0x4F, 0x40, 0x40, 0x4F, 0x4F, 0x6F, 0x27, 0x20, 0x10, 0x10, 0x08, 0x0C, 0x04, 0x00, 0x00, 0x00},
-};
-
+// startup logo
 static const uint8_t wood[512] = 
 {0,48,208,16,16,16,16,16,16,16,16,16,208,48,0,0,0,0,128,96,16,16,16,16,16,16,16,16,16,16,240,0,0,0,128,96,27,5,1,129,97,25,5,3,1,192,48,8,4,2,2,1,193,49,1,9,9,9,201,49,1,1,1,1,3,198,60,0,0,0,192,48,8,4,2,2,1,193,49,1,9,9,9,201,49,1,1,1,1,3,198,60,0,0,0,192,48,13,3,1,1,1,1,193,49,9,9,9,9,241,1,1,1,1,3,6,4,8,240,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,255,0,128,96,24,6,129,96,24,4,254,0,0,0,0,0,0,0,255,96,24,6,1,128,96,24,6,1,0,0,112,140,3,0,0,0,0,48,76,67,64,64,0,48,12,3,0,0,128,64,48,12,3,0,0,112,140,3,0,0,0,0,48,76,67,64,64,0,48,12,3,0,0,128,64,48,12,3,0,192,48,12,3,0,0,0,0,64,112,76,67,64,64,32,16,12,3,0,0,0,0,128,64,48,12,3,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,15,6,129,96,24,6,1,0,0,0,255,0,128,64,64,32,32,16,16,8,8,4,6,1,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,0,0,0,2,2,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,128,64,64,32,32,16,16,8,8,4,6,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
 
 static const uint8_t pecker[86] =
 {0,1,3,255,255,0,255,33,33,33,33,51,30,30,12,0,0,60,126,126,219,145,145,145,145,147,90,78,12,0,0,60,126,126,195,129,129,129,129,129,66,102,36,0,129,255,255,255,24,60,60,102,231,195,129,129,0,0,60,126,126,219,145,145,145,145,147,90,78,12,0,129,255,255,0,255,33,33,33,97,97,243,158,158,140,0,};
+
+// animation when playing
+
+static const uint8_t woodpeckerFrame1[128] =
+{0,4,4,12,92,252,252,252,60,62,30,30,14,14,14,12,28,24,120,240,128,0,0,0,0,0,0,0,64,0,32,0,0,0,0,0,0,6,15,48,192,128,0,0,0,0,0,1,3,0,128,192,193,33,33,34,34,34,34,20,20,148,9,40,0,0,0,128,224,120,28,7,11,9,17,48,224,193,1,0,0,0,7,31,248,224,128,0,0,2,0,0,2,0,0,0,224,120,30,7,1,128,64,0,0,128,64,32,24,15,7,0,0,128,192,96,63,31,7,0,0,0,0,0,0,0,0,0,};
+
+static const uint8_t woodpeckerFrame2[128] =
+{4,12,28,60,252,252,62,62,30,30,14,14,12,12,28,24,112,224,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,31,48,64,128,128,0,0,0,2,7,2,0,128,64,33,33,35,34,34,34,20,20,20,8,8,0,0,0,0,0,0,0,224,120,6,1,8,8,8,17,17,226,194,128,0,1,6,30,120,224,128,0,0,0,0,0,0,0,0,0,0,224,56,15,7,0,0,128,64,48,128,64,32,24,15,7,0,128,192,96,56,31,7,0,0,0,0,0,0,0,0,0,};
+
+bool frame = true;                      // for switching between woodpeckerFrame1 and woodpeckerFrame2
 
 TaskHandle_t Buttons = NULL;
 TaskHandle_t Blink = NULL;
@@ -203,22 +203,27 @@ void startupText(){
 */
 void drawVolumes(){
   i2c_ssd1306_buffer_fill(&i2c_ssd1306, false);
-  i2c_ssd1306_buffer_image(&i2c_ssd1306, 0, 0, (const uint8_t *)logo, 32, 32, false);
+  
+  // woodpecker animation when playing
+  if(frame) i2c_ssd1306_buffer_image(&i2c_ssd1306, 0, 0, (const uint8_t *)woodpeckerFrame1, 32, 32, false);
+  else i2c_ssd1306_buffer_image(&i2c_ssd1306, 0, 0, (const uint8_t *)woodpeckerFrame2, 32, 32, false);
+
+  // show current pattern and current column volume
   i2c_ssd1306_buffer_text(&i2c_ssd1306, 106, 0, "P", false);
   i2c_ssd1306_buffer_int(&i2c_ssd1306, 114, 0, PATTERN, false);                               // show volume for current column
   i2c_ssd1306_buffer_int(&i2c_ssd1306, 106, 24, DRUMSVOL[PATTERN][COORDS[0]], false);         // show volume for current column
 
   for(uint8_t x = 0; x < 16; ++x){
     for(uint8_t y = 0; y < DRUMSVOL[PATTERN][x] - 4; ++y) {                                   // draw volume for each column
-      i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 40 + x * 4, 28 - y, true);  
+      i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 36 + x * 4, 28 - y, true);  
     }
   }
         
   // draw cursor on oled 1306
-  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 40 + PRECOORDS[0] * 4, 30, false);
-  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 40 + PRECOORDS[0] * 4, 31, false);
-  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 40 + COORDS[0] * 4, 30, true);
-  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 40 + COORDS[0] * 4, 31, true);
+  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 36 + PRECOORDS[0] * 4, 30, false);
+  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 36 + PRECOORDS[0] * 4, 31, false);
+  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 36 + COORDS[0] * 4, 30, true);
+  i2c_ssd1306_buffer_fill_pixel(&i2c_ssd1306, 36 + COORDS[0] * 4, 31, true);
        
   // sending buffer to screen
   i2c_ssd1306_buffer_to_ram(&i2c_ssd1306);
@@ -294,6 +299,10 @@ void play(void *arg){
         if(!PLAY) break;                                   // stop if PLAY state changed when playing
 
         for(uint8_t x = 0; x < 16; ++x) {
+          if(x % 4 == 0){                                  // update oled for woodpecker animation when playing
+            NEED_REFRESH_OLED = true;
+            frame = !frame;                                // switch woodpeckerFrame1 and woodpeckerFrame2
+          }
           NOW_PLAYING = x;                                 // save for column playing to global for other functions
           blinkPlayingHit(&preX, &x);
 
