@@ -50,11 +50,12 @@ extern bool MENU;                      // changing to true/false when enter + do
 extern uint8_t MENUINDEX;              // actual index of menu lines
 extern char MENUITEMS[8][10];          // menu items names for oled display
 extern uint16_t MENUVALUES[8];         // parameters for bpm, preset, shuffle
+extern uint8_t MENUINDEXMAX;           // maximum menu index
 extern uint8_t KITSMAX;                // how many kits (sound presets) on sd card (maximum - 10)
 extern uint16_t BPMMAX;                // maximum BPM (which sets in menu)
 extern uint16_t BPM_PAUSE;             // ms delay between drums hits (default for 120 bpm = 125)
 extern uint8_t BPMMIN;
-extern uint8_t SHUFFLEMAX;             // maximum shuffle ms delay after each even hit
+extern uint8_t SWINGMAX;             // maximum shuffle ms delay after each even hit
 extern uint8_t CURRENTVOLUME;          // current global volume
 extern uint8_t PREVIOUSVOLUME;         // previous global volume (for sending UART only if changing)
 extern uint8_t MAXVOLUME;              // maximum global volume

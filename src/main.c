@@ -29,12 +29,12 @@ static const uint8_t pecker[86] =
 {0,1,3,255,255,0,255,33,33,33,33,51,30,30,12,0,0,60,126,126,219,145,145,145,145,147,90,78,12,0,0,60,126,126,195,129,129,129,129,129,66,102,36,0,129,255,255,255,24,60,60,102,231,195,129,129,0,0,60,126,126,219,145,145,145,145,147,90,78,12,0,129,255,255,0,255,33,33,33,97,97,243,158,158,140,0,};
 
 // animation when playing
-
 static const uint8_t woodpeckerFrame1[128] =
-{0,4,4,12,92,252,252,252,60,62,30,30,14,14,14,12,28,24,120,240,128,0,0,0,0,0,0,0,64,0,32,0,0,0,0,0,0,6,15,48,192,128,0,0,0,0,0,1,3,0,128,192,193,33,33,34,34,34,34,20,20,148,9,40,0,0,0,128,224,120,28,7,11,9,17,48,224,193,1,0,0,0,7,31,248,224,128,0,0,2,0,0,2,0,0,0,224,120,30,7,1,128,64,0,0,128,64,32,24,15,7,0,0,128,192,96,63,31,7,0,0,0,0,0,0,0,0,0,};
+{2,6,14,158,254,126,31,31,15,15,7,7,6,134,14,12,56,112,192,128,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,15,24,32,192,64,0,0,128,129,3,1,0,64,160,16,16,17,17,17,17,10,10,10,4,4,0,0,0,0,0,0,128,240,60,3,0,4,4,4,8,8,113,225,192,0,0,3,15,60,240,192,0,0,0,0,0,0,0,0,0,192,112,28,7,3,0,128,64,32,152,64,32,16,12,7,3,128,192,96,48,28,15,3,0,0,0,0,0,0,0,0,0,};
 
 static const uint8_t woodpeckerFrame2[128] =
-{4,12,28,60,252,252,62,62,30,30,14,14,12,12,28,24,112,224,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,31,48,64,128,128,0,0,0,2,7,2,0,128,64,33,33,35,34,34,34,20,20,20,8,8,0,0,0,0,0,0,0,224,120,6,1,8,8,8,17,17,226,194,128,0,1,6,30,120,224,128,0,0,0,0,0,0,0,0,0,0,224,56,15,7,0,0,128,64,48,128,64,32,24,15,7,0,128,192,96,56,31,7,0,0,0,0,0,0,0,0,0,};
+{0,2,2,6,46,126,254,126,30,31,15,15,7,7,7,134,142,12,60,120,192,128,128,0,0,0,0,0,32,0,144,0,0,0,0,0,0,3,7,152,224,192,128,0,0,128,128,0,1,128,192,224,96,16,16,17,17,17,17,10,10,74,4,20,0,0,0,192,240,60,14,3,5,4,8,24,112,224,128,0,0,3,15,31,252,240,192,0,0,1,0,0,1,0,0,0,240,60,15,3,128,64,32,24,128,64,32,16,12,7,3,128,192,96,48,30,15,3,0,0,0,0,0,0,0,0,0,0};
+
 
 bool frame = true;                      // for switching between woodpeckerFrame1 and woodpeckerFrame2
 
@@ -239,19 +239,19 @@ void drawMenu(){
   if(MENUINDEX < 4){
     for(uint8_t i = 0; i < 4; ++i){
       if(MENUINDEX == i)
-        i2c_ssd1306_buffer_text(&i2c_ssd1306, 0, i * 8, ">", false);
-      i2c_ssd1306_buffer_text(&i2c_ssd1306, 10, i * 8, MENUITEMS[i], false);
-      i2c_ssd1306_buffer_int(&i2c_ssd1306, 80, i * 8, MENUVALUES[i], false);
+        i2c_ssd1306_buffer_text(&i2c_ssd1306, 0, i * 8, ">", false);               // cursor
+      i2c_ssd1306_buffer_text(&i2c_ssd1306, 10, i * 8, MENUITEMS[i], false);       // name
+      i2c_ssd1306_buffer_int(&i2c_ssd1306, 80, i * 8, MENUVALUES[i], false);       // value
     }
   }
   
   //menu second page
   else if(MENUINDEX > 3){
-    for(uint8_t i = 4; i < 8; ++i){
+    for(uint8_t i = 4; i < MENUINDEXMAX; ++i){
       if(MENUINDEX == i)
-        i2c_ssd1306_buffer_text(&i2c_ssd1306, 0, (i - 4) * 8, ">", false);
-      i2c_ssd1306_buffer_text(&i2c_ssd1306, 10, (i - 4) * 8, MENUITEMS[i], false);
-      i2c_ssd1306_buffer_int(&i2c_ssd1306, 80, (i - 4) * 8, MENUVALUES[i], false);
+        i2c_ssd1306_buffer_text(&i2c_ssd1306, 0, (i - 4) * 8, ">", false);           // cursor
+      i2c_ssd1306_buffer_text(&i2c_ssd1306, 10, (i - 4) * 8, MENUITEMS[i], false);   // name
+      i2c_ssd1306_buffer_int(&i2c_ssd1306, 80, (i - 4) * 8, MENUVALUES[i], false);   // value
     }
   }
   i2c_ssd1306_buffer_to_ram(&i2c_ssd1306);
@@ -306,8 +306,8 @@ void play(void *arg){
           NOW_PLAYING = x;                                 // save for column playing to global for other functions
           blinkPlayingHit(&preX, &x);
 
-          if(x % 2 && MENUVALUES[2] != 0)                  // add shuffle
-            vTaskDelay(pdMS_TO_TICKS(MENUVALUES[2] * 2));     
+          if(x % 2 && MENUVALUES[5] != 0)                  // add swing
+            vTaskDelay(pdMS_TO_TICKS(MENUVALUES[5] * 2));     
 
           for(uint8_t y = 0; y < 8; ++y){
             if(DRUMS[pat][y][x]){
@@ -321,7 +321,7 @@ void play(void *arg){
           vTaskDelay(pdMS_TO_TICKS(BPM_PAUSE));        // pause between hits (for bpm regulation)
         }
         NEED_REFRESH_MAX = true;                       // we need refresh drums on MAX7219 when PATTERN change
-        NEED_REFRESH_OLED = true;                      // also we need refresh oled info when PATTERN change
+       // NEED_REFRESH_OLED = true;                      // also we need refresh oled info when PATTERN change
       }
     }
     else vTaskDelay(pdMS_TO_TICKS(500));              // delay between checking PLAY state

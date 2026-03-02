@@ -6,11 +6,13 @@ def createArray(text_image, width=128, height=32):
     """
     # Убедимся, что изображение правильного размера
     if len(text_image) != height:
-        raise ValueError(f"Высота должна быть {height} строк")
+        print(f"Высота должна быть {height} строк")
+        # return
     
     for i, line in enumerate(text_image):
         if len(line) != width:
-            raise ValueError(f"Строка {i}: длина должна быть {width} символов")
+            print(f"Строка {i}: длина должна быть {width} символов")
+            # return
     
     # Вычисляем количество страниц (height всегда 32 = 4 страницы по 8 строк)
     pages = height // 8
@@ -79,16 +81,97 @@ peckerImage = [
        "   ## #             ######        ######    ####    ####     ######    ### #     #### ",
     ]
 
-print(len(peckerImage[0]))
+woodpeckerImage1 = [
+"      ######                    ",
+"###############                 ",
+" ###############                ",
+"  ########    ###               ",
+"   #####        ##              ",
+"    ##          ##              ",
+"    ##           ##             ",
+"   ##        #    ###           ",
+"   ##       ###     ####        ",
+"   ##        #          ###     ",
+"   ##                      ##   ",
+"    ##                  ###     ",
+"     #            ######        ",
+"      #          #              ",
+"       ##       #               ",
+"       #   ##    #              ",
+"      #      ##   ##            ",
+"      #           ##            ",
+"     #  ###        ##           ",
+"     #     ##      ##           ",
+"    ##       #      ##          ",
+"    ##       ##     ##          ",
+"    #        ###     ##         ",
+"   ##         ##     ##         ",
+"   ##         ##     ##         ",
+"   ##         ##     ##         ",
+"  ##         ##     ##          ",
+"  #      #   #      ##          ",
+" ##      #  #      ##           ",
+" #      #  #      ##            ",
+"##     #  #      ##             ",
+"#     #  #      ##              ",
+        ]
+
+woodpeckerImage2 = [
+"         ######                 ",
+" ################               ",
+"   ################             ",
+"    ########    ####            ",
+"     #####        ##          # ",
+"    ####          ##        #   ",
+"     ###           ##           ",
+"      #        ##   ###       # ",
+"     ##         #      ####     ",
+"     ##                    ###  ",
+"      #                       ##",
+"       #                   ###  ",
+"       #             ######    #",
+"        #          ##           ",
+"        ##        ###        #  ",
+"       ####  ##  ###            ",
+"       ##        ###     #  #   ",
+"      ##         ###            ",
+"     ## ##        ###           ",
+"     ##   ##      ###           ",
+"    ##     ##      ###          ",
+"    ##      ##      ##          ",
+"   ##       ##      ###         ",
+"   ##        ##     ###         ",
+"  ##         ##     ##          ",
+"  ##         ##    ###          ",
+" ##         ##     ##           ",
+" ##    #    #      ##           ",
+"##     #   #      ##            ",
+"##    #   #      ##             ",
+"#    #   #      ##              ",
+"#   #   #      ##               ",
+]
+
 wood = createArray(woodImage)
 pecker = createArray(peckerImage, 86, 8)
+woodpeckerFrame1 = createArray(woodpeckerImage1, 32, 32)
+woodpeckerFrame2 = createArray(woodpeckerImage2, 32, 32)
+
 print("static const uint8_t wood[512] =\n{", end = '')
 for i in range(len(wood)):
     print(f'{wood[i]},', end = '')
 print("};\n\n")
 
 print("static const uint8_t pecker[86] =\n{", end = '')
-print("{", end = '')
 for i in range(len(pecker)):
     print(f'{pecker[i]},', end = '')
+print("};\n")
+
+print("static const uint8_t woodpeckerFrame1[128] =\n{", end = '')
+for i in range(len(woodpeckerFrame1)):
+    print(f'{woodpeckerFrame1[i]},', end = '')
+print("};\n")
+
+print("static const uint8_t woodpeckerFrame2[128] =\n{", end = '')
+for i in range(len(woodpeckerFrame2)):
+    print(f'{woodpeckerFrame2[i]},', end = '')
 print("};\n")

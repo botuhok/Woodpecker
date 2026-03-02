@@ -20,15 +20,16 @@ uint8_t SLEEPAFTER = 5;                                          // sleep after 
 
 bool DRUMS[PATTERNS][8][16] = {{}};                              // array of drums patterns
 
-char MENUITEMS[8][10] = {"BPM", "Kit", "Swing", "Volume", "Pattern", "Preset", "", ""};  // menu items names for oled display
+char MENUITEMS[8][10] = {"BPM", "Kit", "Preset", "Volume", "Pattern", "Swing"};  // menu items names for oled display
 uint8_t MENUINDEX = 0;                                           // actual index of menu items
-uint16_t MENUVALUES[8] = {100, 0, 0, 30, 0, 0, 0, 0};            // parameters for bpm, preset, shuffle
+uint16_t MENUVALUES[8] = {100, 0, 0, 30, 0, 0};                  // parameters for bpm, preset, shuffle
+uint8_t MENUINDEXMAX = 6;
 
-uint8_t KITSMAX = 9;                                           // how many sound presets (folders on sd card)
+uint8_t KITSMAX = 9;                                             // how many sound presets (folders on sd card)
 uint16_t BPM_PAUSE = 150;                                        // ms delay between drums hits (default for 120 bpm = 60000/120/4 = 125)
 uint16_t BPMMAX = 200;                                           // maximum BPM (which sets in menu)
 uint8_t BPMMIN = 30;                                             // minimum bpm (which sets in menu)
-uint8_t SHUFFLEMAX = 100;                                        // maximum shuffle ms delay after each even hit
+uint8_t SWINGMAX = 100;                                          // maximum swing ms delay after each even hit
 uint8_t CURRENTVOLUME = 30;                                      // current global volume
 uint8_t PREVIOUSVOLUME = 30;                                     // previous volume (for sending UART only if changing)
 uint8_t MAXVOLUME = 30;                                          // maximum global volume

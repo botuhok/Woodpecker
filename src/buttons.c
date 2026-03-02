@@ -102,7 +102,7 @@ void inMenu(){
               break;
       case 1: if(MENUVALUES[1] > 0) MENUVALUES[1]--;         // decrease sound kit preset
               break;
-      case 2: if(MENUVALUES[2] > 0) MENUVALUES[2]--;         // decrease shuffle
+      case 5: if(MENUVALUES[5] > 0) MENUVALUES[5]--;         // decrease swing
               break;
       case 3: if(MENUVALUES[3] > 0){                         // decrease global volume
                 MENUVALUES[3]--;
@@ -115,9 +115,9 @@ void inMenu(){
                 PATTERN = MENUVALUES[4];     
               }    
               break;
-      case 5: if(MENUVALUES[5] > 0){                         // sets DRUMS PRESETS
-                MENUVALUES[5]--;
-                setPreset(PRESETS[MENUVALUES[5]]);           // set DRUMS array = PRESETS number
+      case 2: if(MENUVALUES[2] > 0){                         // sets DRUMS PRESETS
+                MENUVALUES[2]--;
+                setPreset(PRESETS[MENUVALUES[2]]);           // set DRUMS array = PRESETS number
                 NEED_REFRESH_MAX = true;
                 NEED_REFRESH_OLED = true;
                 
@@ -136,9 +136,9 @@ void inMenu(){
       case 0: if(MENUVALUES[0] < BPMMAX) MENUVALUES[0]++;       // increase BPM
               BPM_PAUSE = 60000 / MENUVALUES[0] / 4;
               break;
-      case 1: if(MENUVALUES[1] < KITSMAX) MENUVALUES[1]++;    // increase preset
+      case 1: if(MENUVALUES[1] < KITSMAX) MENUVALUES[1]++;       // increase preset
               break;
-      case 2: if(MENUVALUES[2] < SHUFFLEMAX) MENUVALUES[2]++;    // increase shuffle
+      case 5: if(MENUVALUES[5] < SWINGMAX) MENUVALUES[5]++;      // increase swing
               break;
       case 3: if(MENUVALUES[3] < MAXVOLUME){                     // increase global volume
                 MENUVALUES[3]++;
@@ -151,11 +151,11 @@ void inMenu(){
                 PATTERN = MENUVALUES[4];
               }      
               break;
-      case 5: if(MENUVALUES[5] < PRESETSMAX-1){                  // increase preset number
-                MENUVALUES[5]++;
+      case 2: if(MENUVALUES[2] < PRESETSMAX-1){                  // increase preset number
+                MENUVALUES[2]++;
                 NEED_REFRESH_MAX = true;
                 NEED_REFRESH_OLED = true;
-                setPreset(PRESETS[MENUVALUES[5]]);             // sets DRUMS array = current preset
+                setPreset(PRESETS[MENUVALUES[2]]);               // sets DRUMS array = current preset
               }
               break;
       case 6:
@@ -166,7 +166,7 @@ void inMenu(){
   }
   // pressed DOWN (change menu index)
   else if(!STATES[2]){   
-    if(MENUINDEX < 7) MENUINDEX++;
+    if(MENUINDEX < MENUINDEXMAX-1) MENUINDEX++;
   }
   // pressed UP (change menu index)
   else if(!STATES[1]){

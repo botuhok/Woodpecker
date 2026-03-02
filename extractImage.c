@@ -1,3 +1,7 @@
+/*
+Convert uint8_t array to pixelart image
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 
@@ -30,7 +34,7 @@ int main() {
 
   arrayToImage(pecker,86, 8);
   arrayToImage(woodpeckerFrame1, 32, 32);
-  // arrayToImage(woodpeckerFrame2, 32, 32);
+  arrayToImage(woodpeckerFrame2, 32, 32);
 
   return 0;
 }
